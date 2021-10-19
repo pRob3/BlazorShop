@@ -3,20 +3,40 @@
 
 <h3>Search Products</h3>
 
-<div>
-Search:
-    <input type="text" />
-    <button>Search</button>
-</div>
-<br />
-    <ul>
-        @foreach (var prod in products)
+<SearchBarComponent OnSearch="HandleSearch" />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Brand
+            </th>
+            <th>
+                Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (products != null && products.Count() > 0)
         {
-            <li>
-                @prod.Name
-            </li>
+            @foreach (var product in products)
+            {
+                <ProductItemComponent Product="product"></ProductItemComponent>
+            }
         }
-    </ul>
+        else
+        {
+            <tr>
+                <td colspan="3">
+                    Cannot find products...
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 
 
@@ -30,4 +50,9 @@ Search:
 
         products = searchProduct.Execute();
     }
+
+    private void HandleSearch(string filter)
+        {
+
+        }
 }
