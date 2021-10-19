@@ -31,14 +31,12 @@
         {
             <tr>
                 <td colspan="3">
-                    Cannot find products...
+                    Cannot find any products...
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-
 
 @code {
 
@@ -52,7 +50,7 @@
     }
 
     private void HandleSearch(string filter)
-        {
-
-        }
+    {
+        products = searchProduct.Execute(filter);
+    }
 }
